@@ -1,25 +1,80 @@
-import logo from './logo.svg';
-import './App.css';
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+
+import {
+    createBrowserRouter,
+    RouterProvider,
+    Route,
+    Outlet,
+    Navigate
+} from "react-router-dom";
+
+import Navbar from "./components/NavBar";
+import LeftBar from "./components/LeftBar";
+import RightBar from "./components/RightBar";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const currentUser = true
+
+    // Home page
+    const Layout = () => {
+        return (
+            <div>
+                <Navbar />
+                <div className="grid grid-cols-[3fr_5fr_3fr]">
+                    <LeftBar />
+                    <Outlet />
+                    <RightBar />
+                </div>
+            </div>
+        )
+    }
+
+    const ProtectedRoute = ({ children }) => {
+        if (!currentUser) {
+            return <Navigate to='/login' />
+        }
+
+        return children
+    }
+
+    const router = createBrowserRouter([
+        {
+            path: "/",
+            element: (
+                <ProtectedRoute>
+                    <Layout />
+                </ProtectedRoute>
+            ),
+            children: [
+                {
+                    path: "/",
+                    element: <Home />
+                },
+                {
+                    path: "/profile/:id",
+                    element: <Profile />
+                }
+            ]
+        },
+        
+        {
+            path: "/login",
+            element: <Login />
+        },
+        {
+            path: "/register",
+            element: <Register />
+        }
+    ]);
+
+    return (
+        <div className="App">
+            <RouterProvider router={router} />
+        </div>
+    );
 }
 
 export default App;
