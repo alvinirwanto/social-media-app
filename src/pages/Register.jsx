@@ -6,7 +6,7 @@ import LogoIcon2 from '../img/Logo2.png'
 const Register = () => {
     return (
         <div className='bg-gray-300 w-full h-screen flex items-center justify-center'>
-            <div className='bg-white shadow-xl rounded-md w-full max-w-[380px] md:max-w-[740px] xl:max-w-[900px] h-[80%] md:h-[70%] mx-auto'>
+            <div className='bg-white shadow-xl rounded-md w-full max-w-[380px] md:max-w-[740px] xl:max-w-[900px] h-[80%] md:h-[70%] mx-auto overflow-clip'>
                 <div className='grid md:grid-cols-2 gap-4 h-full'>
 
                     <div className='p-[3rem] flex flex-col justify-center gap-[3rem]'>

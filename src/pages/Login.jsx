@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ButtonRegister from '../common/ButtonRegister'
+import { AuthContext } from '../context/AuthContext'
 import LogoIcon from '../img/Logo1.png'
 import LogoIcon2 from '../img/Logo2.png'
 
 const Login = () => {
+
+    const {login} = useContext(AuthContext)
+
+    const handleLogin = () => {
+        login()
+    }
+
     return (
         <div className='bg-gray-300 w-full h-screen flex items-center justify-center'>
-            <div className='bg-white shadow-xl rounded-md w-full max-w-[380px] md:max-w-[740px] xl:max-w-[900px] h-[70%] mx-auto'>
+            <div className='bg-white shadow-xl rounded-md w-full max-w-[380px] md:max-w-[740px] xl:max-w-[900px] h-[70%] mx-auto overflow-clip'>
                 <div className='grid md:grid-cols-2 gap-4 h-full'>
 
                     <div className='hidden p-[3rem] md:flex flex-col gap-8 cover-image-login'>
@@ -38,7 +46,7 @@ const Login = () => {
                             />
                         </form>
 
-                        <button className='button-1'>Login</button>
+                        <button className='button-1' onClick={handleLogin}>Login</button>
                         <div className='block md:hidden'>
                             <p className='text-sm text-gray-600 text-center'>Don't you have an account?</p>
                             <ButtonRegister />

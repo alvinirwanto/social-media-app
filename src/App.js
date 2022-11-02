@@ -14,19 +14,33 @@ import LeftBar from "./components/LeftBar";
 import RightBar from "./components/RightBar";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import { useContext } from "react";
+import { DarkModeContext } from "./context/DarkModeContext";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
-    const currentUser = true
+
+    const { currentUser } = useContext(AuthContext)
 
     // Home page
     const Layout = () => {
         return (
-            <div>
+            <div className="overflow-hidden h-screen bg-gray-50 dark:bg-[color:var(--dark-base-lite)]">
                 <Navbar />
-                <div className="grid grid-cols-[3fr_5fr_3fr]">
-                    <LeftBar />
+                <div className="grid grid-cols-1 md:grid-cols-[3fr_6fr] xl:grid-cols-[3fr_5fr_3fr]">
+
+                    <div className="hidden md:block overflow-auto h-screen hide-scrollbar pb-[7rem] xl:pb-0">
+                        <LeftBar />
+                        <div className="xl:hidden">
+                            <RightBar />
+                        </div>
+                    </div>
+
                     <Outlet />
-                    <RightBar />
+
+                    <div className="hidden xl:block">
+                        <RightBar />
+                    </div>
                 </div>
             </div>
         )
@@ -59,7 +73,7 @@ function App() {
                 }
             ]
         },
-        
+
         {
             path: "/login",
             element: <Login />
