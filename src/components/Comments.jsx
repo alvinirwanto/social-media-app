@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext';
 
+import { UilMessage } from '@iconscout/react-unicons'
+
 const Comments = () => {
 
     const { currentUser } = useContext(AuthContext)
@@ -26,8 +28,14 @@ const Comments = () => {
 
     return (
         <div>
-            <div>
-                <img src={currentUser.profilePic} alt="" />
+            <div className='my-8 gap-2 grid grid-cols-[1fr_9fr_1fr] items-center'>
+                <img src={currentUser.profilePic} alt="" className='h-[2.5rem] w-[2.5rem] rounded-full object-cover' />
+                <textarea type="text" rows='1' placeholder='Comment' className='hide-scrollbar py-2 focus:outline-none text-base w-full dark:bg-[color:var(--dark-base)] dark:text-white border-b-2 border-gray-400 focus:border-b-2 focus:border-violet-500 break-words' />
+
+                <div className='flex justify-center'>
+                    <UilMessage height='25' width='25' className='text-black dark:text-white cursor-pointer hover:text-violet-500 dark:hover:text-violet-500' />
+                </div>
+
             </div>
             {
                 comments.map(comment => {

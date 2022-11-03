@@ -49,7 +49,7 @@ const NavBar = () => {
                 </div>
 
                 <div className='hidden md:flex gap-6 items-center'>
-                    <div className='flex items-center gap-3 border-2 border-gray-300 rounded-md px-2 py-1'>
+                    <div className='flex items-center gap-3 border-2 border-gray-500 rounded-md px-2 py-1'>
                         <UilSearch height='19' width='19' className='dark:text-white' />
                         <input type="text" placeholder='Search' className='focus:outline-none text-base w-[30vh] xl:w-[25vw] dark:bg-[color:var(--dark-base)] dark:text-white' />
                     </div>

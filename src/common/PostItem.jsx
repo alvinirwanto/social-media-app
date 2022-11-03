@@ -11,7 +11,10 @@ import Comments from '../components/Comments'
 const PostItem = ({ post }) => {
     const [commentOpen, setCommentOpen] = useState(false)
 
-    const liked = false
+    // const liked = false
+
+    // TEMPORARY
+    const [like, setLike] = useState(false)
 
     return (
         <div className='bg-white dark:bg-[color:var(--dark-base)] py-6 mx-3 md:mx-5 px-6 rounded-md shadow-md'>
@@ -26,7 +29,9 @@ const PostItem = ({ post }) => {
                         <p className='text-xs font-medium text-gray-500'>1 min ago</p>
                     </div>
                 </div>
-                <UilEllipsisH height='20' width='20' className='dark:text-[color:var(--dark-text)]' />
+                <div className='hover:bg-[#ffffff2d] rounded-full p-1'>
+                <UilEllipsisH height='20' width='20' className='dark:text-[color:var(--dark-text)] cursor-pointer' />
+                </div>
             </div>
 
             <div className='mt-5'>
@@ -34,18 +39,19 @@ const PostItem = ({ post }) => {
 
                 <div className='flex items-center gap-5 mt-4'>
                     {
-                        liked
-                            ? <RiHeart3Fill className='cursor-pointer h-8 w-8 text-red-500' />
-                            : <RiHeart3Line className='hover:text-violet-500 cursor-pointer h-8 w-8 dark:text-[color:var(--dark-text)] dark:hover:text-violet-500' />
+                        like
+                            ? <RiHeart3Fill className='cursor-pointer h-8 w-8 text-violet-500 active:scale-125 duration-200' onClick={() => setLike(!like)} />
+                            : <RiHeart3Line className='hover:text-violet-500 cursor-pointer h-8 w-8 dark:text-[color:var(--dark-text)] dark:hover:text-violet-500 active:scale-125 duration-200' onClick={() => setLike(!like)} />
 
                     }
+
                     <UilCommentDots
                         onClick={() => setCommentOpen(!commentOpen)}
                         height='29'
                         width='29'
-                        className='hover:text-violet-500 cursor-pointer dark:text-[color:var(--dark-text)] dark:hover:text-violet-500' />
+                        className='hover:text-violet-500 cursor-pointer dark:text-[color:var(--dark-text)] dark:hover:text-violet-500 active:scale-125 duration-200' />
 
-                    <UilShare height='31' width='31' className='hover:text-violet-500 cursor-pointer dark:text-[color:var(--dark-text)] dark:hover:text-violet-500' />
+                    <UilShare height='31' width='31' className='hover:text-violet-500 cursor-pointer dark:text-[color:var(--dark-text)] dark:hover:text-violet-500 active:scale-125 duration-200' />
                 </div>
 
                 <div className='mt-2 text-sm text-gray-500'>
